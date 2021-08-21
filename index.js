@@ -64,26 +64,6 @@ const hobbyRecord = new mongoose.model('personshobbies', {
     hobby: String
 });
 
-// app.get("/",(req,res)=>{
-//     note.find({}, function(err, records){
-//         console.log("got here");
-//         res.render('index', {
-//             recordsList: records
-//         });
-//     });
-
-// });
-
-
-
-// app.get("/",(req,res)=>{
-//     note.find({}, function(err, hobbies){
-//         res.render('index', {
-//             hobbiesList: hobbies
-//         });
-//     });
-// });
-
 app.get("/", (req, res)=>{
     note.find({
 
