@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="css\bootstrap.min.css">
+    <title>ADD Website</title>
+</head>
+
+<body>
+    <nav>
+        <h4 class="logo">ADD</h4>
+        <ul class="nav-links">
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#aboutUs">About Us</a></li>
+            <li><a href="#signup">Sign-up</a></li>
+            <li><a href="#tableSection">Table</a></li>
+            <li><a href="#contact">Contact us</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+    <section id="Home">
+        <!-- <img class="buildings" src="Savin-NY-Website-Background-Web.jpg" alt="Homepage Pic" style="width: 100%;"> -->
+        <div class="headerContent">
+            <br>
+            <h1>Sign up to the Database</h1>
+            <p>Your way into adding your information to MongoDB collection</p>
+        </div>
+    </section>
+    <section id="aboutUs">
+        <img src="ShahdDaghashPic.jpg" alt="">
+        <div>
+            <p>"I'm a third year student majoring in computer engineering at Birzeit university. I'm eager to learn as much as I can in the field of Technology, since it's what I love. I'm currently a full stack intern for the summer. Beside my internship, I take advantage of my free time to learn concepts that help me be better at problem solving, as well as participating in online and onsite programming competitions."</p>
+            <button id="CV" onclick="window.location.href='cv.html'"><strong>View CV</strong></button>
+        </div>
+    </section>
+    <section id="signup">
+        <label for="sign" id="sign">Sign-up</label>
+        <div id="FormContainer">
+            <form id="myForm" action="/sign_up" method="POST">
+                <input type="checkbox" id="hiddenInput" name="hiddenInput" style="display: none;" unchecked>
+                <div id="Entry">
+                    <table>
+                        <tr>
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Enter Name" class="box" required>
+                        </tr>
+                    </table>
+                </div>
+                <div id="Entry">
+                    <label for="Email">Email:</label>
+                    <input type="email" name="email" id="Email" placeholder="Enter your email" required>
+                </div>
+                <div id="Entry">
+                    <label>Gender:</label>
+                    <select id="gender" name="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div id="Entry">
+                    <label for="Address">Address:</label>
+                    <input type="text" name="address" id="Address" placeholder="Enter Address" required>
+                </div>
+                <div id="Entry">
+                    <label for="Date">Date Of Birth:</label>
+                    <input type="date" name="date" id="Date" required>
+                </div>
+                <div id="msg"></div>
+                <div id="Buttons">
+                    <input type='submit' id="submit" value="submit">
+                </div>
+                <br>
+            </form>
+        </div>
+    </section>
+    <section id="tableSection">
+        <div>
+            <form action="/del" method="POST">
+                <button id="Delete"><strong>Delete Row</strong></button>
+            </form>
+            <form action="/delAll" method="POST">
+                <button id="Clear"><strong>Clear table</strong></button>
+            </form>
+            <form action="/check" method="POST">
+                <button id="DeleteSelected"><strong>Delete selected</strong></button>
+            </form>
+        </div>
+            <table id="table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>Date Of Birth</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+
+                <!-- <tbody>
+                    <%recordsList.forEach(record=>{%>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="check" name="checks[]" class="check" value="<%=record._id%>" onclick="OnClick()" >
+                            </td>
+                            
+                            <td><%=record.name%></td>
+                            <td><%=record.gender%></td>
+                            <td><%=record.address%></td>
+                            <td><%=record.date%></td>
+                            <td><%=record.email%></td>
+                        </tr>
+                        <%})%>
+                </tbody>  -->
+                <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="check" name="checks[]" class="check" value="<%=record._id%>" onclick="OnClick()" >
+                            </td>
+                            <td>Shahd</td>
+                            <td>Female</td>
+                            <td>Ramallah</td>
+                            <td>2001-05-05</td>
+                            <td>shahddaghash18@gmail.com</td>
+                        </tr>
+                </tbody>
+            </table>
+        
+    </section>
+    <footer id="contact">
+        <div id="contactTitle">
+            <h2>Contact Us</h2>
+        </div>
+        <div id="infooo">
+            <div id="thisInfo">
+                <h4>Address</h4>
+                <h5>Ramallah, Palestine</h5>
+            </div>
+            <div id="thisInfo">
+                <h4>Phone</h4>
+                <h5>0598491914</h5>
+            </div>
+            <div id="thisInfo">
+                <h4>Email</h4>
+                <h5>shahddaghash18@gmail.com</h5>
+            </div>
+        </div>
+    </footer>
+    <script>
+
+        const navSlide = () => {
+            const burger = document.querySelector(".burger");
+            const nav = document.querySelector(".nav-links");
+            const navLinks = document.querySelectorAll('.nav-links li');
+            burger.addEventListener('click', ()=>{
+                nav.classList.toggle('nav-active');
+
+
+                navLinks.forEach((link, index)=>{
+                    if(link.style.animation){
+                        link.style.animation = '';
+                    }
+                    else{
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
+                    }
+                });
+
+                burger.classList.toggle('toggle');
+
+            });
+
+        }
+        navSlide();
+    </script>
+</body>
+
+</html>

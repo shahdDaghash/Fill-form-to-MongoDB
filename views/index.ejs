@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <title>ADD Website</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+            /* font-family: 'poppins', sans-serif  ; */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            min-height: 8vh;
+            background-color: #865858;
+            /* font-family: 'poppins', sans-serif  ; */
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+
+        .logo {
+            color: #E2D5D5;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-around;
+            width: 50%;
+        }
+
+        .nav-links li {
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #E2D5D5;
+            text-decoration: none;
+            letter-spacing: 3px;
+            /* font-weight: bold; */
+            font-size: 14px;
+        }
+
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: #E2D5D5;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .burger {
+            display: none;
+        }
+
+        @media screen and (max-width:1100px) {
+            .nav-links {
+                width: 60%;
+            }
+        }
+
+        @media screen and (max-width:768px) {
+            body {
+                overflow: hidden;
+            }
+
+            .nav-links {
+                position: absolute;
+                right: 0px;
+                height: 92vh;
+                top: 8vh;
+                background-color: #865858;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 50%;
+                transform: translate(100%);
+                transition: transform 0.5s ease-in;
+            }
+
+            .nav-links li {
+                opacity: 0;
+            }
+
+            .burger {
+                display: block;
+                cursor: pointer;
+            }
+
+            * {
+                overflow: auto;
+            }
+        }
+
+
+        .nav-active {
+            transform: translate(0%);
+        }
+
+
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translate(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0px);
+            }
+        }
+
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .toggle .line2 {
+            opacity: 0;
+        }
+
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .buildings {
+            width: 100%;
+            height: 50%;
+        }
+
+        #Home {
+            min-height: 500px;
+            background: url('/showcase.jpg') no-repeat 0 -400px;
+            text-align: center;
+            /* background-size: 100%; */
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            -webkit-box-shadow: 0 0 10px rgb(49, 49, 49);
+            box-shadow: 0 0 10px rgb(49, 49, 49);
+        }
+
+        .headerContent h1 {
+            margin-top: 100px;
+            font-size: 44px;
+            margin-bottom: 30px;
+            color: #E2D5D5;
+        }
+
+        .headerContent p {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #E2D5D5;
+        }
+
+
+        #aboutUs {
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            background-color: #E2D5D5;
+            -webkit-box-shadow: 0 0 10px rgb(49, 49, 49);
+            box-shadow: 0 0 10px rgb(49, 49, 49);
+        }
+
+        #aboutUs img {
+            margin-top: 30px;
+            border-radius: 100%;
+            height: 300px;
+            margin-left: 30px;
+        }
+
+        #aboutUs p {
+            margin-top: 100px;
+            margin-left: 15px;
+            font-size: 18px;
+            margin-right: 10px;
+            color: #865858;
+        }
+
+        #aboutUs button {
+            margin-top: 30px;
+            font-size: large;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 8px;
+            background-color: #BBBBBB;
+            color: #865858;
+        }
+
+        #FormContainer {
+            min-height: 600px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+        }
+
+        #signup {
+            -webkit-box-shadow: 0 0 10px rgb(49, 49, 49);
+            box-shadow: 0 0 10px rgb(49, 49, 49);
+            background-color: #BBBBBB;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #myForm {
+            margin: 40px;
+            width: 50%;
+            text-align: center;
+            border-color: black;
+            padding-top: 50px;
+            padding-bottom: 30px;
+            background-color: #b8a5a5;
+            padding: 0;
+            padding-top: 30px;
+        }
+
+        #FormContainer input[type=text],
+        select,
+        input[type=email],
+        input[type=date] {
+            width: 70%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            float: right;
+            margin-right: 15px;
+            background-color: #f1e0e0;
+        }
+
+        #myForm label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+
+        #myForm input[type=submit] {
+            margin-top: 30px;
+            font-size: large;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 8px;
+            background-color: #E2D5D5;
+            color: #865858;
+
+        }
+        
+
+        #Entry {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        #sign {
+            margin-top: 40px;
+            font-size: 36px;
+            margin-bottom: 0px;
+            color: #865858;
+        }
+
+
+        #tableSection {
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            background-color: #E2D5D5;
+            -webkit-box-shadow: 0 0 10px rgb(49, 49, 49);
+            box-shadow: 0 0 10px rgb(49, 49, 49);
+        }
+
+        #DeleteSelected ,#Delete ,#Clear{
+            margin-top: 30px;
+            font-size: large;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 8px;
+            background-color: #BBBBBB;
+            color: #865858;
+        }
+
+        #DeleteSelected{
+            margin-bottom: 40px;
+        }
+
+        #view{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background-color: #BBBBBB;
+            /* color: #865858; */
+        }
+
+        #tableSection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 600px;
+            justify-content: center;
+            display: flex;
+        }
+
+        #thisDelete{
+            width: 100%;
+            /* display: flex; */
+            justify-content: center;
+            flex-direction: column;
+            
+        }
+
+        #Table {
+            margin-top: 40p;
+            /* text-align: center; */
+            width: 80%;
+            /* margin-left: 160px; */
+            border-collapse: collapse;
+            /* border-spacing: 5px 1rem; */
+            /* padding: 0px; */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        td {
+            border-bottom: 2px solid #865858;
+            padding: 15px;
+            padding-left: 30px;
+            padding-right: 30px;
+            background-color: #c9b0b0;
+            box-shadow: 2px 2px 2px #acaaaa;
+        }
+
+
+        #Table thead th {
+            background-color: #BBBBBB;
+            padding: 15px;
+            border-bottom: 4px solid #999797;
+            box-shadow: 2px 2px 2px #acaaaa;
+        }
+
+
+        tr:hover td {background-color:#ad7272;}
+
+        
+
+        footer {
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            background-color: #865858;
+            -webkit-box-shadow: 0 0 10px rgb(49, 49, 49);
+            box-shadow: 0 0 10px rgb(49, 49, 49);
+            color: #E2D5D5;
+        }
+
+        #infooo {
+            display: flex;
+            justify-content: center;
+        }
+
+        #contactTitle {
+            padding-bottom: 60px;
+            padding-top: 0px;
+        }
+
+        #thisInfo {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        #hiddenCell {
+            /* color: red; */
+            background-color: #dabbbb;
+            border: 0;
+        } 
+
+        #hereInfoGoes{
+            margin-top: 10px;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #BBBBBB;
+            margin-bottom: 30px;
+            display: none;
+            border: 4px solid #999797;
+            box-shadow: 2px 2px 2px #acaaaa;
+            
+        }
+
+        #hereInfoGoes h4{
+            margin-bottom: 10px;
+            
+        }
+
+        #tableSection form{
+            display: inline;
+
+        }
+
+        #FirstForm #SecondForm{
+            display: inline;
+            float: left;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+
+
+        
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h4 class="logo">ADD</h4>
+        <ul class="nav-links">
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#aboutUs">About Us</a></li>
+            <li><a href="#signup">Sign-up</a></li>
+            <li><a href="#tableSection">Table</a></li>
+            <li><a href="#contact">Contact us</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+    <section id="Home">
+        <!-- <img class="buildings" src="Savin-NY-Website-Background-Web.jpg" alt="Homepage Pic" style="width: 100%;"> -->
+        <div class="headerContent">
+            <br>
+            <h1>Sign up to the Database</h1>
+            <p>Your way into adding your information to MongoDB collection</p>
+        </div>
+    </section>
+    <section id="aboutUs">
+        <img src="/ShahdDaghashPic.jpg" alt="">
+        <div>
+            <p>"I'm a third year student majoring in computer engineering at Birzeit university. I'm eager to learn as
+                much as I can in the field of Technology, since it's what I love. I'm currently a full stack intern for
+                the summer. Beside my internship, I take advantage of my free time to learn concepts that help me be
+                better at problem solving, as well as participating in online and onsite programming competitions."</p>
+            <form action="/cv" method="POST">
+                <button id="CV" ><strong>View CV</strong></button>
+            </form>
+        </div>
+    </section>
+    <section id="signup">
+        <label for="sign" id="sign">Sign-up</label>
+        <div id="FormContainer">
+            <form id="myForm" action="/sign_up" method="POST">
+                <input type="checkbox" id="hiddenInput" name="hiddenInput" style="display: none;" unchecked>
+                <div id="Entry">
+                    <table>
+                        <tr>
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Enter Name" class="box" required>
+                        </tr>
+                    </table>
+                </div>
+                <div id="Entry">
+                    <label for="Email">Email:</label>
+                    <input type="email" name="email" id="Email" placeholder="Enter your email" required>
+                </div>
+                <div id="Entry">
+                    <label>Gender:</label>
+                    <select id="gender" name="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div id="Entry">
+                    <label for="Address">Address:</label>
+                    <input type="text" name="address" id="Address" placeholder="Enter Address" required>
+                </div>
+                <div id="Entry">
+                    <label for="Date">Date Of Birth:</label>
+                    <input type="date" name="date" id="Date" required>
+                </div>
+                <div id="msg"></div>
+                <div id="Buttons">
+                    <input type='submit' id="submit" value="submit">
+                </div>
+                <br>
+            </form>
+        </div>
+    </section>
+    <section id="tableSection">
+        <div>
+            <form action="/del" method="POST" id="FirstForm">
+                <button id="Delete"><strong>Delete Row</strong></button>
+            </form>
+            <form action="/delAll" method="POST" id="SecondForm">
+                <button id="Clear"><strong>Clear table</strong></button>
+            </form>
+        </div>
+        <form action="/check" method="POST" id="thisDelete">
+            <button id="DeleteSelected"><strong>Delete selected</strong></button>
+        
+            <table id="Table">
+                <thead>
+                    <tr>
+                        
+                        <th>Select</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>Date Of Birth</th>
+                        <th>Email</th>
+                        <!-- <th></th> -->
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- <%var i = 1%> -->
+                    <%everything.dbRecords.forEach(record=>{%>
+                        <tr id="primary" >
+                            <td>
+                                <input type="checkbox" id="check" name="checks[]" class="check" value="<%=record._id%>" >
+                            </td>
+                            <td><%=record.name%></td>
+                            <td><%=record.gender%></td>
+                            <td><%=record.address%></td>
+                            <td><%=record.date%></td>
+                            <td><%=record.email%></td>
+                            <!-- <td><button id="view" value="<%=record._id%>">View Hobbies</button></td> -->
+                        </tr>
+                    <%})%>
+                </tbody>
+            </table>
+        </form>
+        <div id="hereInfoGoes">
+            <h4>Hobbies</h4>
+            <p id="hobbiesForThem"></p>
+        </div>
+    </section>
+    <footer id="contact">
+        <div id="contactTitle">
+            <h2>Contact Us</h2>
+        </div>
+        <div id="infooo">
+            <div id="thisInfo">
+                <h4>Address</h4>
+                <h5>Ramallah, Palestine</h5>
+            </div>
+            <div id="thisInfo">
+                <h4>Phone</h4>
+                <h5>0598491914</h5>
+            </div>
+            <div id="thisInfo">
+                <h4>Email</h4>
+                <h5>shahddaghash18@gmail.com</h5>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        
+        var checkboxElems = document.querySelectorAll("#check");
+
+        for (let i = 0; i < checkboxElems.length; i++) {
+            checkboxElems[i].addEventListener("change", function() {
+                var add ="";
+                var dbh = '<%- JSON.stringify(everything.dbHobbies)%>';
+                dbh = JSON.parse(dbh);
+                dbh.forEach(hobby=>{
+                    if(hobby.personid == checkboxElems[i].value){
+                        if(add == ""){
+                            add = hobby.hobby
+                        }else{
+                            add = add +", "+ hobby.hobby;
+                        }
+                    }
+                });
+                if (checkboxElems[i].checked) {
+                    if(add != ""){
+                        document.getElementById("hereInfoGoes").style.display = "block";
+                        document.getElementById("hobbiesForThem").innerHTML = add;
+                    }else{
+                        document.getElementById("hereInfoGoes").style.display = "block";
+                        document.getElementById("hobbiesForThem").innerHTML = "*This person has no hobbies*";
+                    }
+                } else {
+                    document.getElementById("hereInfoGoes").style.display = "none";
+                    document.getElementById("hobbiesForThem").innerHTML = "";
+                }
+            });
+        
+        }
+
+
+        function selectRow(row){
+            var firstInput = row.getElementsByTagName('input')[0];
+            firstInput.checked = !firstInput.checked;
+        }
+
+        const navSlide = () => {
+            const burger = document.querySelector(".burger");
+            const nav = document.querySelector(".nav-links");
+            const navLinks = document.querySelectorAll('.nav-links li');
+            burger.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+
+
+                navLinks.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = '';
+                    }
+                    else {
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
+                    }
+                });
+
+                burger.classList.toggle('toggle');
+
+            });
+
+        }
+        navSlide();
+    </script>
+</body>
+
+</html>
